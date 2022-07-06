@@ -25,6 +25,7 @@ class OnboardingActivity : AppCompatActivity() {
         setupIndicators()
         setCurrentIndicator(0)
         setViewPagerListener()
+        setClickListeners()
     }
 
     private fun setOnboardingItems() = with(binding) {
@@ -49,6 +50,12 @@ class OnboardingActivity : AppCompatActivity() {
             )
         )
         onboardingViewPager.adapter = adapter
+    }
+
+    private fun setClickListeners() = with(binding) {
+        onboardingSkipButton.setOnClickListener {
+            startActivity(HomeActivity.getCallingIntent(this@OnboardingActivity))
+        }
     }
 
     private fun setViewPagerListener() = with(binding) {
