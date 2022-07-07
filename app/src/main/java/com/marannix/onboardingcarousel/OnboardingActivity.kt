@@ -54,8 +54,20 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun setClickListeners() = with(binding) {
         onboardingSkipButton.setOnClickListener {
-            startActivity(HomeActivity.getCallingIntent(this@OnboardingActivity))
+            navigateToHomeActivity()
         }
+        onboardingNextButton.setOnClickListener {
+            if (onboardingViewPager.currentItem + 1 < adapter.itemCount) {
+                onboardingViewPager.currentItem += 1
+            } else {
+                navigateToHomeActivity()
+            }
+        }
+    }
+
+    private fun navigateToHomeActivity() {
+        startActivity(HomeActivity.getCallingIntent(this@OnboardingActivity))
+        finish()
     }
 
     private fun setViewPagerListener() = with(binding) {
